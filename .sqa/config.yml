@@ -1,0 +1,84 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.10
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/lezzidan/compsssqaaas:
+      branch: main
+      repo: https://github.com/lezzidan/compsssqaaas
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/lezzidan/compsssqaaas git:
+        commands:
+        - /usr/bin/env sh .sqa/script.lanky-lavender-angora.sh
+        container: qc.acc_snippy-olivine-buffalo
+  QC.Doc:
+    repos:
+      github.com/lezzidan/compsssqaaas find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.freaky-teal-capuchin.sh
+        container: qc.doc_geeky-jade-newt
+      github.com/lezzidan/compsssqaaas git:
+        commands:
+        - /usr/bin/env sh .sqa/script.tasty-turquoise-urchin.sh
+        container: qc.doc_ready-cinnabar-jaguar
+      github.com/lezzidan/compsssqaaas markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.muggy-tangerine-centipede.sh
+        container: qc.doc_beady-ecru-gerbil
+      github.com/lezzidan/compsssqaaas restructuredtext-lint:
+        commands:
+        - /usr/bin/env sh .sqa/script.zippy-heliotrope-coati.sh
+        container: qc.doc_surly-periwinkle-crane
+  QC.Lic:
+    repos:
+      github.com/lezzidan/compsssqaaas licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.frumpy-pumpkin-duck.sh
+        container: qc.lic_scanty-cream-barnacle
+  QC.Met:
+    repos:
+      github.com/lezzidan/compsssqaaas cff-converter-python:
+        commands:
+        - /usr/bin/env sh .sqa/script.messy-orchid-grasshopper.sh
+        container: qc.met_gamy-magnolia-barb
+  QC.Sec:
+    repos:
+      github.com/lezzidan/compsssqaaas bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.scummy-xanthic-fowl.sh
+        container: qc.sec_gimpy-denim-birman
+  QC.Sty:
+    repos:
+      github.com/lezzidan/compsssqaaas checkstyle:
+        commands:
+        - /usr/bin/env sh .sqa/script.breezy-peach-urchin.sh
+        container: qc.sty_hilly-champagne-chow
+      github.com/lezzidan/compsssqaaas flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.lovely-celadon-earwig.sh
+        container: qc.sty_wimpy-cinnabar-collie
+      github.com/lezzidan/compsssqaaas hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.geeky-red-javanese.sh
+        container: qc.sty_cheeky-harlequin-flamingo
+      github.com/lezzidan/compsssqaaas jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.gummy-olive-flamingo.sh
+        container: qc.sty_beady-ochre-gopher
+      github.com/lezzidan/compsssqaaas rubocop:
+        commands:
+        - /usr/bin/env sh .sqa/script.paltry-white-oriole.sh
+        container: qc.sty_snazzy-copper-panda
+  QC.Ver:
+    repos:
+      github.com/lezzidan/compsssqaaas get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.squeaky-emerald-worm.sh
+        container: qc.ver_gimpy-pink-wombat
+timeout: 5400
